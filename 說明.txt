@@ -1,0 +1,23 @@
+我是基於這個修改的：http://www.oschina.net/p/pathbutton/similar_projects
+
+改它的理由如下：
+1、它原來這個沒有自適應不同的位置，例如想改到上方或者左上角，就比較麻煩。
+2、它原來這個沒有真正移動子按鈕的物理位置，僅僅是以animation移動了動畫位置（實際left、right還是原來的地方，這是animation本來的性質）。這就使點擊比較麻煩，它原本的方式是全部點擊事件由父layout接收，檢測去到哪一個rect就相應不同按鈕，這就使這個父layout的再父layout（姑且叫祖layout）都沒法接收到onclick或其他事件。
+3、它原本控制click也只監聽了ontouch的down事件，如果我longclick就無法分辨了。它這樣做的理由估計是因為down事件你可以設置return false，就不會把click事件攔截，它的父控件仍然可以拿到click事件。如果把up也做了，up一定要return true才生效，但return true就等於把事件截取不留給父控件。它這樣做貌似也能處理好點擊問題和遮蔽父控件的問題，但感覺有點掩耳盜鈴，不太規範。而且代碼也不太簡潔，尤其在activity裡要引用時就得引用一堆東西。
+4、它這種佈局方式沒有考慮控件大小，動不動就fill_parent，加上第2點問題，就把祖控件全遮蔽。
+5、它原來這個的封裝程度不足。例如自定義的animation類本來通用性不強，其實可以一並封裝在composelayout內，沒必要在activity裡面又再調用。結果在activity裡面要調用很多行才能用得上。而且它原來那個太依賴佈局文件，如果我每次使用的子按鈕數量不相同，又要改一大輪。
+6、它原本的代碼靈活性不高，例如半徑、動畫時間都是寫死的。
+
+我的修改基本就處理了以上的問題。
+可以放在不同的位置，四個角和四條邊上；
+子按鈕可以自定義，傳入按鈕的圖片id就可以，數量也沒限制（如果你太多也會很擠）；
+自適應寬度高度；
+在佈局xml中只要擺一個這個控件就可以，不用手工再在裡面加一堆imagebutton；
+子按鈕全部移動了物理位置，並且可以直接賦予onclicklistener，onlongclick或者ontouch的事件就沒做，你有興趣可以自行加上，就兩句話應該不難的；
+
+
+控件的設置定位在java代碼裡，不在xml佈局文件。因為如果在佈局文件內加參數，又要加attr和命名空間，增加使用複雜程度（可能高手覺得沒所謂，但類似我這種爛水平來說就覺得很煩）。而且因為有不確定數量的子按鈕，要用xml傳遞參數也比較羅嗦，而且做法可能不太規範，所以沒有直接在構造函數中傳遞了。有興趣的朋友可以自行再修改。
+
+另外，代碼內都有注釋的了。不過用了粵語寫，懶得改回語體文了，估計能看懂。
+
+以上代碼在android2.1模擬器上測試運行無誤。如果更低的1.5和1.6就不保證了。

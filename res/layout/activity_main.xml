@@ -1,0 +1,99 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlparent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#0000"
+    android:onClick="sendMessage" >
+
+    <!-- 長寬求其設，你設大啲亦可以，但如果過細佢會自動調返夠喐嘅位置。 -->
+    <!-- align要自己設，靠邊一邊 -->
+
+    <geniuz.myPathbutton.composerLayout
+        android:id="@+id/test"
+        android:layout_width="140dp"
+        android:layout_height="280dp"
+        android:layout_marginLeft="81dp"
+        android:layout_marginTop="111dp" />
+
+    <Button
+        android:id="@+id/toTop"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:text="Top"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/toTop20"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/toTop"
+        android:text="Top*20"
+        android:layout_alignParentLeft="true"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/toBottom"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/toTop"
+        android:text="Bottom"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/toBottom20"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/toBottom"
+        android:layout_toRightOf="@id/toTop20"
+        android:text="toBottom*20"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/toLeft"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/toBottom"
+        android:text="Left"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/toLeft20"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/toLeft"
+        android:layout_toRightOf="@id/toBottom20"
+        android:text="toLeft*20"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/toRight"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/toLeft"
+        android:text="Right"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/toRight20"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/toRight"
+        android:text="toRight*20"
+        android:layout_toRightOf="@id/toLeft20"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/ShowBtn"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/trans"
+        android:visibility="visible" />
+
+</RelativeLayout>
